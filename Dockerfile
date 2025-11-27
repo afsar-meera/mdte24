@@ -1,12 +1,11 @@
 # Use official Python base image
-FROM python:3.13-slim
+FROM python:3.10-slim
 
 # Set working directory
 WORKDIR /app
 
 # Copy dependency file first (faster rebuilds)
 COPY requirements.txt .
-
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -16,7 +15,7 @@ COPY app.py .
 COPY model.pkl .
 
 # Expose API port
-EXPOSE 8000
+EXPOSE 5000
 
 # Start API on container run
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
